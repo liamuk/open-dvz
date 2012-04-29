@@ -1,0 +1,217 @@
+default: default
+groups:
+  alchemist:
+    permissions:
+    - magicspells.cast.transmute-potions
+    groups:
+    - dwarf
+    meta:
+      suffix: '&5 the Alchemist'
+  baker:
+    permissions:
+    - magicspells.cast.transmute-food
+    groups:
+    - dwarf
+    meta:
+      suffix: '&5 the Mysterious Dwarf'
+  blacksmith:
+    permissions:
+    - magicspells.cast.transmute-weapons
+    groups:
+    - dwarf
+    meta:
+      suffix: '&5 the Blacksmith'
+  builder:
+    permissions:
+    - magicspells.cast.transmute-cobble
+    groups:
+    - dwarf
+    meta:
+      suffix: '&5 the Builder'
+  creeper:
+    permissions:
+    - magicspells.cast.creeper-explode
+    groups:
+    - monster
+    meta:
+      suffix: '&1, a pretty creepy guy'
+  default:
+    permissions:
+    - bukkit.broadcast.user
+    - essentials.afk
+    - essentials.build
+    - essentials.chat.color
+    - essentials.chat.question
+    - essentials.chat.shout
+    - essentials.compass
+    - essentials.depth
+    - essentials.help
+    - essentials.helpop
+    - essentials.ignore
+    - essentials.list
+    - essentials.mail
+    - essentials.mail.send
+    - essentials.me
+    - essentials.motd
+    - essentials.msg
+    - essentials.nick
+    - essentials.ping
+    - essentials.powertool
+    - essentials.rules
+    - essentials.spawn
+    - essentials.suicide
+    - essentials.time
+    - group.default
+    - magicspells.cast.class-select
+    - magicspells.cast.mob-select
+    - magicspells.grant.*
+    - magicspells.learn.*
+    groups: []
+  dragon:
+    permissions:
+    - essentials.fly
+    - magicspells.cast.dragon
+    - magicspells.cast.dragon-firebreath
+    groups:
+    - default
+    meta:
+      suffix: '&1 the Dragon'
+  dragon-warrior:
+    permissions:
+    - ^group.op
+    - bPermissions.*
+    - bukkit.broadcast
+    - bukkit.broadcast.admin
+    - bukkit.command
+    - bukkit.command.gamemode
+    - bukkit.command.give
+    - bukkit.command.help
+    - bukkit.command.kill
+    - bukkit.command.list
+    - bukkit.command.me
+    - bukkit.command.op
+    - bukkit.command.op.give
+    - bukkit.command.op.take
+    - bukkit.command.plugins
+    - bukkit.command.reload
+    - bukkit.command.save
+    - bukkit.command.save.disable
+    - bukkit.command.save.enable
+    - bukkit.command.save.perform
+    - bukkit.command.say
+    - bukkit.command.stop
+    - bukkit.command.teleport
+    - bukkit.command.tell
+    - bukkit.command.time
+    - bukkit.command.time.add
+    - bukkit.command.time.set
+    - bukkit.command.toggledownfall
+    - bukkit.command.unban
+    - bukkit.command.unban.ip
+    - bukkit.command.unban.player
+    - bukkit.command.version
+    - bukkit.command.whitelist
+    - bukkit.command.whitelist.add
+    - bukkit.command.whitelist.disable
+    - bukkit.command.whitelist.enable
+    - bukkit.command.whitelist.list
+    - bukkit.command.whitelist.reload
+    - bukkit.command.whitelist.remove
+    - bukkit.command.xp
+    - craftbukkit
+    - essentials.*
+    - group.admin
+    - magicspells.advanced.*
+    - magicspells.cast.*
+    - magicspells.grant.*
+    - magicspells.learn.*
+    - magicspells.nocooldown
+    - magicspells.noreagents
+    - magicspells.notarget
+    - magicspells.silent
+    - magicspells.teach.*
+    - mobdisguise.*
+    - mobdisguise.mob.*
+    - mobdisguise.player
+    - tracks.*
+    - worldedit.*
+    groups:
+    - op
+    meta:
+      suffix: '&5 the Dragon Warrior'
+  dwarf:
+    permissions:
+    - magicspells.cast.alchemist
+    - magicspells.cast.baker
+    - magicspells.cast.blacksmith
+    - magicspells.cast.builder
+    - magicspells.cast.class-select
+    - magicspells.cast.dragon
+    - magicspells.cast.mob-select
+    - magicspells.cast.projectile-fireresist
+    - magicspells.cast.projectile-health
+    - magicspells.cast.projectile-speed
+    - magicspells.cast.projectile-strength
+    - magicspells.cast.tailor
+    groups:
+    - default
+    meta:
+      suffix: '&5 the Mysterious Dwarf'
+  monster:
+    permissions:
+    - magicspells.cast.blaze
+    - magicspells.cast.cat
+    - magicspells.cast.creeper
+    - magicspells.cast.enderman
+    - magicspells.cast.mob-select
+    - magicspells.cast.pig
+    - magicspells.cast.silverfish
+    - magicspells.cast.skeleton
+    - magicspells.cast.spider
+    - magicspells.cast.suicide
+    - magicspells.cast.zombie
+    - mobdisguise.mob.*
+    groups:
+    - default
+    meta:
+      suffix: '&1, a talking monster'
+  op:
+    permissions:
+    - ^group.default
+    - bukkit.command.ban
+    - bukkit.command.ban.ip
+    - bukkit.command.ban.player
+    - bukkit.command.kick
+    - group.moderator
+    groups:
+    - default
+    meta:
+      suffix: '&7 the Op'
+  skeleton:
+    permissions: []
+    groups:
+    - monster
+    meta:
+      suffix: '&1, a set of bones'
+  spider:
+    permissions:
+    - magicspells.cast.spider-blind
+    - magicspells.cast.spider-dizzy
+    - magicspells.cast.spider-poison
+    groups:
+    - monster
+    meta:
+      suffix: '&1, aka sanic'
+  tailor:
+    permissions:
+    - magicspells.cast.transmute-armor
+    groups:
+    - dwarf
+    meta:
+      suffix: '&5 the Tailor'
+  zombie:
+    permissions: []
+    groups:
+    - monster
+    meta:
+      suffix: '&1, who wants your brains'

@@ -1,0 +1,92 @@
+spawns: 
+  dragon:
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  dwarf: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  builder: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  alchemist: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  blacksmith: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  baker: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  tailor: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  default: 
+    world: worlds/main/main
+    x: 152.0
+    y: 143.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  monster: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  zombie: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  skeleton: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  creeper: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0
+  spider: 
+    world: worlds/main/main
+    x: 152.0
+    y: 133.0
+    z: 271.0
+    yaw: 0
+    pitch: 0

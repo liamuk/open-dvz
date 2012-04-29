@@ -1,0 +1,746 @@
+general:
+    debug: false
+    enable-volatile-features: true
+    alt-config: altConfig.yml
+    str-cast-usage: |
+        Usage: /cast <spell>. 
+        Use /cast list to see a list of spells.
+    str-unknown-spell: You do not know a spell with that name.
+    str-spell-change: "%s ready."
+    str-spell-change-empty: Right click to prime this spell.
+    str-on-cooldown: Enough with the spam- wait %c seconds.
+    str-missing-reagents: "That's not how you use this transmution Ram"
+    str-cant-cast: You cant cast that spell right now.
+    str-wrong-world: You cannot cast that spell here.
+    str-console-name: "Magic"
+    text-color: 3
+    broadcast-range: 20
+    separate-player-spells-per-world: false
+    allow-cycle-to-no-spell: true
+    only-cycle-to-castable-spells: true
+    allow-cast-with-fist: false
+    ops-have-all-spells: true
+    default-all-perms-false: true
+    ignore-default-bindings: false
+    ignore-cast-item-durability: [ 268, 269, 270, 271, 283, 284, 285, 286, 290, 294, 314, 315, 316, 317 ]
+    global-cooldown: 500
+    cast-on-animate: false
+    
+    entity-names:
+        zombie: an ugly zombie
+        skeleton: a skeleton
+        spider: a spider
+        cavespider: a nasty little spider
+        creeper: a creepy creeper
+        slime: a slimy blob
+        wolf: a wolf
+        snowman: a snow golem
+        villager: an innocent villager
+        enderman: Mr. Enderman
+        silverfish: a slimy silverfish
+        ghast: a ghast
+        pigzombie: a pig zombie
+        blaze: a blaze
+        lavaslime: a magma slime
+        giant: the giant
+        enderdragon: the ender dragon
+        cow: a cow
+        sheep: a sheep
+        pig: a pig
+        chicken: a duck
+        mushroomcow: a deformed cow
+        squid: a squid
+    
+    mana:
+        enable-mana-bars: true
+        max-mana: 100
+        mana-bar-prefix: "Mana:"
+        mana-bar-size: 35
+        color-full: 10
+        color-empty: 0
+        regen-tick-rate: 100
+        regen-amount: 5
+        show-mana-on-use: false
+        show-mana-on-regen: false
+        show-mana-on-wood-tool: true
+        tool-slot: 8
+        mana-potion-cooldown: 30
+        str-mana-potion-on-cooldown: You cannot use another mana potion yet (%c seconds).
+        mana-potions:
+            - 351:4 100
+            - 348 60
+            - 331 30
+        
+spells:
+
+    list:
+        spell-class: ".command.ListSpell"
+        name: list
+        description: List all the spells you know.
+        only-show-castable-spells: false
+        reload-granted-spells: false
+        spells-to-hide: []
+        str-prefix: "Known spells:"
+        str-no-spells: You do not know any spells.
+    help:
+        spell-class: ".command.HelpSpell"
+        name: help
+        description: Get information about a specified spell.
+        require-known-spell: true
+        str-usage: "Usage: /cast help <spell>"
+        str-no-spell: You do not know a spell by that name.
+        str-desc-line: "%s - %d"
+        str-cost-line: "Cost: %c"
+    teach:
+        spell-class: ".command.TeachSpell"
+        name: teach
+        description: Teach a spell to another player.
+        require-known-spell: true 
+        str-usage: "Usage: /cast teach <target> <spell>"
+        str-no-target: No such player.
+        str-no-spell: You do not know a spell by that name.
+        str-cant-teach: You can't teach that spell.
+        str-cant-learn: That person cannot learn that spell.
+        str-cast-self: You have taught %t the %s spell.
+        str-cast-target: "%a has taught you the %s spell."
+    forget:
+        spell-class: ".command.ForgetSpell"
+        name: forget
+        description: Make a player forget a spell.
+        allow-self-forget: true
+        str-usage: "Usage: /cast forget <target> <spell>"
+        str-no-target: No such player.
+        str-no-spell: You do not know a spell by that name.
+        str-doesnt-know: That person does not know that spell.
+        str-cast-self: You made %t forget the %s spell.
+        str-cast-target: "%a has made you forget the %s spell."
+        str-cast-self-target: "You have forgotten the %s spell."
+        str-reset-target: "You have reset %t's spellbook."
+        str-reset-self: "You have forgotten all of your spells."
+ 
+#DvZ
+
+    dwarf-items:
+        spell-class: ".instant.ConjureSpell"
+        name: dwarf-items
+        description: class-select items
+        add-to-inventory: true
+        items:
+            - 2256 1 100%
+            - 2257 1 20%
+            - 2258 1 20%
+            - 2259 1 20%
+            - 2260 1 20%
+    dwarf-permissions:
+        spell-class: ".ExternalCommandSpell"
+        name: dwarf-permissions
+        description: "sets permissions for dwarves"
+        execute-on-console-instead: true
+        command-to-execute:
+            - "ci %a"
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup dwarf"
+    dwarf-warp:
+        spell-class: ".ExternalCommandSpell"
+        name: dwarf-warp
+        description: "warps to the dwarf monument"
+        command-to-execute:
+            - "warp dwarf-fortress"
+        temporary-permissions:
+            - essentials.warp
+    class-select:
+        spell-class: ".MultiSpell"
+        name: class-select
+        description: Join an epic game of Dwarves v Zombies (uses magma cream, gives discs)
+        cast-item: 378
+        cooldown: 99999
+        require-cast-item-on-command: true
+        cost:
+            - 378 1
+        spells:
+            - dwarf-permissions
+            - dwarf-items
+            - dwarf-warp
+        str-cast-self: "Welcome to Dwarves v Zombies: Bootleg Edition!"
+#Dwarf Classes
+
+    builder:
+        spell-class: ".ExternalCommandSpell"
+        name: builder
+        description: Use Builder Class 
+        cast-item: 2256
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup builder"
+            - "clearinvent %a"
+            - "give %a book 1" 
+            - "give %a leatherhat 1"
+            - "give %a leatherpants 1"
+            - "give %a leatherboots 1"
+            - "give %a leatherchestplate 1"
+            - "give %a ironshovel 1" 
+            - "give %a ironpickaxe 1"
+            - "give %a ironaxe 1"
+            - "give %a cookedpork 5"
+        str-cast-self: "You are now a builder"
+    alchemist:
+        spell-class: ".ExternalCommandSpell"
+        name: alchemist
+        description: Use Alchemist Class 
+        cast-item: 2257
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup alchemist"
+            - "clearinvent %a"
+            - "give %a book 1"
+            - "give %a brewingstand 2"
+            - "give %a cauldron 2"
+            - "give %a chest 2"
+            - "give %a redstonedust 5"
+            - "give %a sign 3"
+            - "give %a lapislazuliblock 64"
+            - "give %a glass 20"
+        str-cast-self: "You are now an alchemist" 
+    blacksmith:
+        spell-class: ".ExternalCommandSpell"
+        name: blacksmith
+        description: Use Blacksmith Class 
+        cast-item: 2258
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup blacksmith"
+            - "clearinvent %a"
+            - "give %a book 1"
+            - "give %a ironpickaxe 1"
+            - "give %a redstoneore 8"
+            - "give %a goldore 24"
+            - "give %a furnace 2"
+            - "give %a coal 10"
+            - "give %a rawfish 10"
+            - "give %a chest 2"
+            - "give %a sign 3"
+            - "give %a netherbrick 64"
+        str-cast-self: "You are now a blacksmith"
+    tailor:
+        spell-class: ".ExternalCommandSpell"
+        name: tailor
+        description: Use Tailor Class 
+        cast-item: 2259
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup tailor"
+            - "clearinvent %a"
+            - "give %a book 1"
+            - "give %a bread 1"
+            - "give %a diamondhoe 1"
+            - "give %a bone 10"
+            - "give %a seeds 30"
+            - "give %a sapling 6"
+            - "give %a bucket 1"
+            - "give %a dirt 64"
+            - "give %a torch 32"
+            - "give %a chest 2"
+        str-cast-self: "You are now a tailor"
+    baker:
+        spell-class: ".ExternalCommandSpell"
+        name: baker
+        description: Use Baker Class 
+        cast-item: 2260
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup baker"
+            - "clearinvent %a"
+            - "give %a book 1"
+            - "give %a clayblock 8"
+            - "give %a brickblock 64"
+            - "give %a coal 10"
+            - "give %a furnace 2"
+            - "give %a chest 2"
+        str-cast-self: "You are now a baker"
+
+#Transmute spells
+
+    transmute-cobble:
+        spell-class: ".instant.ConjureSpell"
+        name: transmute-cobble
+        description: gives a stack of cobble
+        cast-item: 340
+        require-cast-item-on-command: true
+        add-to-inventory: false
+        cooldown: 30
+        experience: 5
+        items: 
+            - 98 64 100%
+            - 348 4 100%
+        str-cast-self: "You have been blessed with cobble"
+    transmute-potions:
+        spell-class: ".instant.ConjureSpell"
+        name: transmute-potions
+        description: turns 3 mundane potions into useful potions
+        cast-item: 340
+        require-cast-item-on-command: true
+        add-to-inventory: false
+        experience: 5
+        cost: 
+            - 373:64 3
+        items:
+            - 373:8197 3 100%
+            - 352 5 100%
+            - 335 1 100%
+            - 12 20 100%
+            - 373:8195 1 10%
+            - 373:8201 1 25%
+            - 373:8194 1 50%
+        str-cast-self: "Your mundane potions are no longer so mundane"
+    transmute-weapons:
+        spell-class: ".instant.ConjureSpell"
+        name: transmute-weapons
+        description: turns 3 gold clocks into useful weaponry
+        cast-item: 340
+        require-cast-item-on-command: true
+        add-to-inventory: false 
+        experience: 5
+        cost: 
+            - 347 3
+        items:
+            - 288 32 100%
+            - 331 5 100%
+            - 14 4 100%
+            - 276 1 50%
+            - 278 1 50 % 
+    transmute-armor:
+        spell-class: ".instant.ConjureSpell"
+        name: transmute-armor
+        description: turns 3 orange dyes into useful armor
+        cast-item: 340
+        require-cast-item-on-command: true
+        add-to-inventory: false
+        experience: 5
+        cost:
+            - 351:14 3
+        items:
+            - 82 4 100%
+            - 310 1 5%
+            - 311 1 5%
+            - 312 1 5%
+            - 313 1 5%
+            - 306 1 25%
+            - 307 1 25%
+            - 308 1 25%
+            - 309 1 25%
+            - 302 1 40%
+            - 303 1 40%
+            - 304 1 40%
+            - 305 1 40%
+    transmute-food:
+        spell-class: ".instant.ConjureSpell"
+        name: transmute-food
+        description: turns 3 bricks into useful food
+        cast-item: 340
+        require-cast-item-on-command: true
+        add-to-inventory: false
+        experience: 5
+        cost:
+            - 336 3 
+        items:
+            - 357 3 100%
+            - 14 10 100%
+            - 354 1 25%
+
+#potions
+    buff-health:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: buff-health
+        description: buffs health
+        type: 10
+        duration: 1200
+        amplifier: 2
+        targeted: true
+        target-players: true
+    buff-strength:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: buff-strength
+        description: buffs strength
+        type: 5
+        duration: 1200
+        amplifier: 2
+        targeted: true
+        target-players: true
+    buff-speed:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: buff-speed
+        description: buffs speed
+        type: 1
+        duration: 1200
+        amplifier: 2
+        targeted: true
+        target-players: true
+    buff-fireresist:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: buff-health
+        description: buffs health
+        type: 12
+        duration: 1200
+        amplifier: 2
+        targeted: true
+        target-players: true
+
+    projectile-health:
+        spell-class: ".instant.ProjectileSpell"
+        name: projectile-health
+        description: projectile area effect buff-health
+        experience: -5
+        cast-item: 373:8197 
+        projectile: snowball
+        target-players: true
+        aoe-radius: 5
+        spells:
+            - buff-health
+    projectile-strength:
+        spell-class: ".instant.ProjectileSpell"
+        name: projectile-strength
+        description: projectile area effect buff-strength
+        experience: -5
+        cast-item: 373:8201
+        projectile: snowball
+        target-players: true
+        aoe-radius: 5
+        spells:
+            - buff-strength
+    projectile-speed:
+        spell-class: ".instant.ProjectileSpell"
+        name: projectile-speed
+        description: projectile area effect buff-speed
+        experience: -5
+        cast-item: 373:8194 
+        projectile: snowball
+        target-players: true
+        aoe-radius: 5
+        spells:
+            - buff-speed
+    projectile-fireresist:
+        spell-class: ".instant.ProjectileSpell"
+        name: projectile-fireresist
+        description: projectile area effect buff-fireresist
+        experience: -5
+        cast-item: 373:8195
+        projectile: snowball
+        target-players: true
+        aoe-radius: 5
+        spells:
+            - buff-fireresist
+
+#Mobs!
+
+    mob-items:
+        spell-class: ".instant.ConjureSpell"
+        name: mob-items
+        description: "It's a graveyard smash! (uses gold nugget, gives discs)"
+        add-to-inventory: true
+        items:
+            - 2261 1 100%
+            - 2262 1 20%
+            - 2263 1 20%
+            - 2264 1 20%
+            - 2265 1 20%
+    mob-permissions:
+        spell-class: ".ExternalCommandSpell"
+        name: mob-permissions
+        description: "sets permissions for monsters"
+        execute-on-console-instead: true
+        command-to-execute:
+            - "ci %a"
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup monster"
+            - "cast forget %a *" 
+    mob-warp:
+        spell-class: ".ExternalCommandSpell"
+        name: mob-warp
+        description: "warps to mob assault position"
+        command-to-execute:
+            - "warp mob-fortress"
+        temporary-permissions:
+            - essentials.warp
+    mob-select:
+        spell-class: ".MultiSpell"
+        name: mob-select
+        description: "It's a graveyard smash!"
+        cast-item: 372
+        require-cast-item-on-command: true
+        spells:
+            - mob-permissions
+            - mob-items
+        cost:
+            - 372 1
+        str-cast-self: "It's now the mash\nIt's now the monster mash!"
+#Mob Classes
+
+    zombie:
+        spell-class: ".MultiSpell"
+        name: zombie
+        description: use zombie class
+        cast-item: 2261
+        require-cast-item-on-command: true
+        spells:
+            - zombie-setup
+            - zombie-disguise
+            - mob-warp
+        str-cast-self: "Braaaaaains...."
+    zombie-setup:
+        spell-class: ".ExternalCommandSpell"
+        name: zombie-setup
+        description: setup zombie class 
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup zombie"
+            - "clearinvent %a"
+            - "give %a ironsword 1 sharpness:2"
+            - "give %a ironleggings 1"
+            - "give %a ironhelmet 1"
+            - "give %a ironchestplate 1"
+            - "give %a ironboots"
+            - "give %a cookedbeef 64"
+            - "give %a potion:16389 2"
+            - "give %a ghasttear 1" 
+    zombie-disguise:
+        spell-class: ".ExternalCommandSpell"
+        name: zombie-disguise
+        description: disguise zombie class
+        command-to-execute:
+            - "md zombie"
+    
+    skeleton:
+        spell-class: ".MultiSpell"
+        name: skeleton
+        description: use skeleton class
+        cast-item: 2262
+        require-cast-item-on-command: true
+        spells:
+            - skeleton-setup
+            - skeleton-disguise
+        str-cast-self: "You really need to eat more"
+    skeleton-setup:
+        spell-class: ".ExternalCommandSpell"
+        name: skeleton-setup
+        description: setup skeleton class 
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup skeleton"
+            - "clearinvent %a"
+            - "give %a bow 1 48 49 50 51"
+            - "give %a arrow"
+            - "give %a leatherhat 1"
+            - "give %a leatherlegs 1"
+            - "give %a leatherchestplate 1"
+            - "give %a leatherboots 1"
+            - "give %a cookedbeef 64"
+            - "give %a vine 64"
+            - "give %a ghasttear 1" 
+    skeleton-disguise:
+        spell-class: ".ExternalCommandSpell"
+        name: skeleton-disguise
+        description: disguise skeleton class
+        command-to-execute:
+            - "md skeleton"
+    
+    creeper:
+        spell-class: ".MultiSpell"
+        name: creeper
+        description: use creeper class
+        cast-item: 2263
+        require-cast-item-on-command: true
+        spells:
+            - creeper-setup
+            - creeper-disguise
+        str-cast-self: "Thatsss a very nice fortresss you have there..."
+    creeper-setup:
+        spell-class: ".ExternalCommandSpell"
+        name: creeper-setup
+        description: setup creeper class 
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup creeper"
+            - "clearinvent %a"
+            - "give %a leatherhat 1"
+            - "give %a leatherlegs 1"
+            - "give %a leatherchestplate 1"
+            - "give %a leatherboots 1"
+            - "give %a gunpowder 1"
+            - "give %a cookedbeef 64"
+            - "give %a ghasttear 1" 
+    creeper-disguise:
+        spell-class: ".ExternalCommandSpell"
+        name: creeper-disguise
+        description: disguise creeper class
+        command-to-execute:
+            - "md creeper"
+
+    spider:
+        spell-class: ".MultiSpell"
+        name: spider
+        description: use spider class
+        cast-item: 2264
+        require-cast-item-on-command: true
+        spells:
+            - spider-setup
+            - spider-speed-setup
+            - spider-jump-setup
+            - spider-disguise
+        str-cast-self: "GOTTA GO FAST"
+    spider-setup:
+        spell-class: ".ExternalCommandSpell"
+        name: spider-setup
+        description: setup spider class 
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup spider"
+            - "clearinvent %a"
+            - "give %a ironsword 1 sharpness:2"
+            - "give %a ironleggings 1"
+            - "give %a ironhelmet 1"
+            - "give %a ironchestplate 1"
+            - "give %a ironboots"
+            - "give %a cookedbeef 64"
+            - "give %a potion:16388 2"
+            - "give %a spidereye 1"
+            - "give %a ghasttear 1"
+    spider-speed-setup:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: spider-buff-setup
+        description: setup spider class speed
+        type: 1
+        strength: 5
+        duration: 99999
+        targeted: false
+    spider-jump-setup:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: spider-buff-setup
+        description: setup spider class jump
+        type: 8
+        amplifier: 5
+        duration: 99999
+        targeted: false 
+    spider-disguise:
+        spell-class: ".ExternalCommandSpell"
+        name: spider-disguise
+        description: disguise spider class
+        command-to-execute:
+            - "md spider"
+#Mob Utility
+
+    suicide:
+        spell-class: ".ExternalCommandSpell"
+        name: suicide
+        description: cause suicide
+        cast-item: 370
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "ci %a"
+            - "kill %a"
+            - "give %a netherstalk 1"
+        str-cast-self: "You dissipate gracefully into the air"
+
+    creeper-explode:
+        spell-class: ".MultiSpell"
+        name: creeper-explode
+        description: "blow up! YOLO!"
+        cast-item: 289
+        require-cast-item-on-command: true
+        spells:
+            - creeper-boom
+            - suicide 
+        str-cast-self: "YOLO!"
+    creeper-boom:
+        spell-class: ".targeted.ExplodeSpell"
+        name: creeper-boom
+        description: the explosion part of creeper-explode
+        explosion-size: 4
+        backfire-chance: 10000
+
+    spider-poison:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: spider-poision
+        description: spider poision ability
+        require-cast-item-on-command: true
+        cast-item: 373:16388
+        type: 19
+        strength: 3
+        duration: 600
+        targeted: true
+        target-players: true
+        target-non-players: true 
+        str-cast-self: "You spit poison at %t"
+    spider-blind:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: spider-blind
+        description: spider blinding ability
+        require-cast-item-on-command: true
+        cast-item: 375
+        type: 15
+        strength: 3
+        duration: 600
+        targeted: true
+        target-players: true
+        target-non-players: true
+        str-cast-self: "Your poison hits %t's eye, blinding them"
+    spider-dizzy:
+        spell-class: ".targeted.PotionEffectSpell"
+        name: spider-dizzy
+        description: spider dizzying ability
+        cast-item: 375
+        require-cast-item-on-command: true
+        type: 9
+        strength: 3
+        duration: 600
+        targeted: true
+        target-players: true
+        target-non-players: true
+        str-cast-self: "Your poison hits %t's eye, dizzying them"
+
+    dragon:
+        spell-class: ".ExternalCommandSpell"
+        name: dragon
+        description: turn into a mighty dragon
+        cast-item: 2266
+        require-cast-item-on-command: true
+        execute-on-console-instead: true
+        command-to-execute:
+            - "world worlds/main/main"
+            - "user %a"
+            - "user setgroup dragon"
+            - "ci %a"
+            - "give %a 122 1"
+    dragon-firebreath:
+        spell-class: ".targeted.FireballSpell"
+        name: dragon-firebreath
+        description: Breath fire!
+        cast-item: 122
+        cooldown: 0
+        target-players: true
+        str-cast-self: Die peasants!

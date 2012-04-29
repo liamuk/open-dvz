@@ -1,0 +1,39 @@
+Instructions:
+
+	- First download craftbukkit and the necessary mods:
+		- Essentials
+		- MobDisguise
+		- MagicSpells
+		- bPermissions
+	- Replace the stock files with the provided files
+	- Run craftbukkit.sh to start the server and the game
+		- make an admin dragon-warrior from the console:
+		world worlds/main/main
+		user <username>
+		user setgroup dragon-warrior
+		- have them fly above spawn and drop magma creams in the beginning
+		gamemode <username> 1
+		give <username> magmacream 64
+		- make them a normal user again
+		gamemode <username> 0
+		user setgroup default
+		kill <username>
+		- PLAY!
+		- When the time comes, turn an admin into a dragon
+		give <username> 2266		
+		- and have them use /fly to fly
+		- PLAY!
+	- Stop the server and use reset.sh to reset permissions and the world for
+	 the next round 
+
+
+Some caveats:
+
+	- There are massive problems with permissions right now (this is probably
+	why rurikar and the gang didn't release their version) so this is
+	really only suitable for playing with trustworthy friends right now	
+	- There is only one unremarkable map provided
+	- The classes are probably not properly implemented, because I only 
+	watched the youtube videos, and never actually played the game
+	- Only 4 mobs are implemented at this time- zombie, skeleton, creeper,
+	 spider

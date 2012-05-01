@@ -369,7 +369,7 @@ spells:
         name: buff-health
         description: buffs health
         type: 10
-        duration: 1200
+        duration: 6000
         amplifier: 2
         targeted: true
         target-players: true
@@ -378,7 +378,7 @@ spells:
         name: buff-strength
         description: buffs strength
         type: 5
-        duration: 1200
+        duration: 6000
         amplifier: 2
         targeted: true
         target-players: true
@@ -387,7 +387,7 @@ spells:
         name: buff-speed
         description: buffs speed
         type: 1
-        duration: 1200
+        duration: 6000
         amplifier: 2
         targeted: true
         target-players: true
@@ -396,7 +396,7 @@ spells:
         name: buff-health
         description: buffs health
         type: 12
-        duration: 1200
+        duration: 6000
         amplifier: 2
         targeted: true
         target-players: true
@@ -537,6 +537,7 @@ spells:
         spells:
             - skeleton-setup
             - skeleton-disguise
+            - mob-warp
         str-cast-self: "You really need to eat more"
     skeleton-setup:
         spell-class: ".ExternalCommandSpell"
@@ -573,6 +574,7 @@ spells:
         spells:
             - creeper-setup
             - creeper-disguise
+            - mob-warp
         str-cast-self: "Thatsss a very nice fortresss you have there..."
     creeper-setup:
         spell-class: ".ExternalCommandSpell"
@@ -609,6 +611,7 @@ spells:
             - spider-speed-setup
             - spider-jump-setup
             - spider-disguise
+            - mob-warp
         str-cast-self: "GOTTA GO FAST"
     spider-setup:
         spell-class: ".ExternalCommandSpell"
@@ -724,11 +727,18 @@ spells:
         str-cast-self: "Your poison hits %t's eye, dizzying them"
 
     dragon:
-        spell-class: ".ExternalCommandSpell"
+        spell-class: ".MultiSpell"
         name: dragon
-        description: turn into a mighty dragon
+        description: DRAAAGON
         cast-item: 2266
         require-cast-item-on-command: true
+        spells:
+            - dragon-permissions
+            - dragon-disguise
+    dragon-permissions:
+        spell-class: ".ExternalCommandSpell"
+        name: dragon-permissions
+        description: permissions to turn into a mighty dragon
         execute-on-console-instead: true
         command-to-execute:
             - "world worlds/main/main"
@@ -736,6 +746,12 @@ spells:
             - "user setgroup dragon"
             - "ci %a"
             - "give %a 122 1"
+    dragon-disguise:
+        spell-class: ".ExternalCommandSpell"
+        name: dragon-disguise
+        description: disguise as a dragon
+        command-to-execute:
+            - "md enderdragon"
     dragon-firebreath:
         spell-class: ".targeted.FireballSpell"
         name: dragon-firebreath
